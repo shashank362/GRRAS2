@@ -1,8 +1,7 @@
 pipeline {
-    agent any
-      triggers {
-       pollSCM '* * * * *'
-        }
+    agent {
+     label 'slave1'       
+    }
     stages {
         stage('Checkout') {
              steps{
@@ -11,12 +10,12 @@ pipeline {
         }
     stage('Build'){
              steps{
-                 sh 'mvn install' 
+                 sh '/home/shanks/slavedir/apache-maven-3.9.9/bin/mvn install'
             }
        }
     stage('Deploy'){
             steps{
-                 sh 'cp target/GRRAS2.war /home/shashank/extracted/apache-tomcat-9.0.93/webapps'
+                 sh 'cp target/GRRAS2.war /home/shanks/slavedir/apache-tomcat-9.0.93/webapps'
            }
        }
    }

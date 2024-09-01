@@ -1,6 +1,6 @@
 pipeline {
     agent {
-     label 'slave1'       
+     label 'slave-label'       
     }
     stages {
         stage('Checkout') {
@@ -10,7 +10,7 @@ pipeline {
         }
     stage('Build'){
              steps{
-                 sh '/home/shanks/slavedir/apache-maven-3.9.9/bin/mvn install'
+                 sh JAVA_HOME=/home/shanks/slavedir/jdk-11.0.24 /home/shanks/slavedir/apache-maven-3.9.9/bin/mvn install'
             }
        }
     stage('Deploy'){
